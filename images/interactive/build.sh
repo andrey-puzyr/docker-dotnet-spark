@@ -2,7 +2,6 @@
 
 # Create different versions of the .NET for Apache Spark interactive docker image
 # based on the Apach Spark and .NET for Apache Spark version.
-
 set -o errexit   # abort on nonzero exitstatus
 set -o nounset   # abort on unbound variable
 set -o pipefail  # don't hide errors within pipes
@@ -11,9 +10,9 @@ readonly image_repository='3rdman'
 readonly supported_apache_spark_versions=(
     "2.3.0" "2.3.1" "2.3.2" "2.3.3" "2.3.4"
     "2.4.0" "2.4.1" "2.4.3" "2.4.4" "2.4.5" "2.4.6" "2.4.7"
-    "3.0.0" "3.0.1"
+    "3.0.0" "3.0.1" "3.0.2"
     )
-readonly supported_dotnet_spark_versions=("1.0.0")
+readonly supported_dotnet_spark_versions=("1.0.0" "1.1.1")
 readonly dotnet_core_version=3.1
 
 dotnet_spark_version=1.0.0
@@ -144,7 +143,7 @@ set_dotnet_spark_jar() {
 build_image() {
     local image_name="${1}"
     local build_args="--build-arg dotnet_core_version=${dotnet_core_version}
-        --build-arg dotnet_spark_version=${dotnet_spark_version}
+        --build-arg DOTNET_SPARK_VERSION=${dotnet_spark_version}
         --build-arg SPARK_VERSION=${apache_spark_version}
         --build-arg DOTNET_SPARK_JAR=${dotnet_spark_jar}"
     local cmd="docker build ${build_args} -t ${image_name} ."
