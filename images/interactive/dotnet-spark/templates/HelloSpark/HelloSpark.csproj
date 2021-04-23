@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Spark" Version="" />
+    <PackageReference Include="Microsoft.Spark" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

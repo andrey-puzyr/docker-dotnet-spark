@@ -191,8 +191,8 @@ build_dotnet_spark_interactive() {
     local image_name="${image_repository}/dotnet-spark:${dotnet_spark_version}-${apache_spark_version}-interactive"
 
     cd dotnet-spark
-    cp --recursive templates/scripts ./bin
-    cp --recursive templates/HelloSpark ./HelloSpark
+    cp -R templates/scripts ./bin
+    cp -R templates/HelloSpark ./HelloSpark
 
     replace_text_in_file HelloSpark/HelloSpark.csproj "<TargetFramework><\/TargetFramework>" "<TargetFramework>netcoreapp${dotnet_core_version}<\/TargetFramework>"
     replace_text_in_file HelloSpark/HelloSpark.csproj "PackageReference Include=\"Microsoft.Spark\" Version=\"\"" "PackageReference Include=\"Microsoft.Spark\" Version=\"${dotnet_spark_version}\""
@@ -215,8 +215,8 @@ build_dotnet_spark_interactive() {
 cleanup()
 {
     cd dotnet-spark
-    rm --recursive --force bin
-    rm --recursive --force HelloSpark
+    rm -f -R bin
+    rm -f -R HelloSpark
     cd ~-
 }
 

@@ -21,7 +21,7 @@ COPY *.ipynb ${HOME}/dotnet.spark/examples/
 RUN cd /dotnet \
     && dotnet new console -o SparkDummy \
     && cd SparkDummy \
-    && dotnet add package Microsoft.Spark \
+    && dotnet add package Microsoft.Spark --version $DOTNET_SPARK_VERSION \
     && dotnet build \
     && cp /dotnet/SparkDummy/bin/Debug/netcoreapp${DOTNET_CORE_VERSION}/microsoft-spark-*.jar ${HOME}/ \
     && rm -rf /dotnet/SparkDummy \
